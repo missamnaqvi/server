@@ -33,21 +33,13 @@ app.use(express.urlencoded({ extended: true }));
 connectMongoAtlas();
 
 // Initialize Routes
-initializeRoutes(app);
-
-// Add response for root route "/"
 app.get("/", (req, res) => {
   res.send("Welcome to Node Server!");
 });
 
-// Handle OPTIONS requests (CORS preflight)
-app.options(
-  "*",
-  cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
-  })
-);
+initializeRoutes(app);
+
+// Add response for root route "/"
 
 // Start the Server
 app.listen(port, () => {
